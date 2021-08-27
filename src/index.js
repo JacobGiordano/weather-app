@@ -27,7 +27,13 @@ const fetchCityData = async cityObj => {
 
 const fetchSelectedCityData = e => {
   const clickedEl = e.target.closest("li");
-  console.log(clickedEl);
+  const fetchObj = {
+    name: clickedEl.querySelector(".li-city").textContent,
+    country: clickedEl.querySelector(".li-country").textContent
+  }
+  clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
+  clearList(mainEl);
+  fetchCityData(fetchObj);
 }
 
 const handleSearch = () => {
@@ -35,15 +41,22 @@ const handleSearch = () => {
   const foundJson = findCityInJson(searchTerms);
   clearList(mainEl);
   if (foundJson.length > 1) {
+    const resultsCount = makeNewEl({
+      tag: "span", 
+      classes: "results-count",
+      text: `${foundJson.length} cities found matching "${searchTerms}"`
+    });
     const resultsUL = makeNewEl({
       tag: "ul", 
       classes: "results-ul"
     });
+    mainEl.appendChild(resultsCount);
     mainEl.appendChild(resultsUL);
     for (let i = 0; i < foundJson.length; i ++) {
       const currentObj = foundJson[i];
       const cityEl = makeNewEl({
         tag: "span",
+        classes: "li-city",
         text: `${currentObj.name}`
       });
       const commaEl = makeNewEl({
@@ -54,11 +67,13 @@ const handleSearch = () => {
       if (stateEl) {
         stateEl = makeNewEl({
           tag: "span",
+          classes: "li-state",
           text: currentObj.state
         });
       }
       const countryEl = makeNewEl({
         tag: "span",
+        classes: "li-country",
         text: currentObj.country
       });
       const newLI = makeNewEl({
