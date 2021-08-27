@@ -25,7 +25,7 @@ const fetchCityData = async cityObj => {
   return data;
 }
 
-const fetchSelectedCityData = e => {
+const fetchSelectedCityData = async e => {
   const clickedEl = e.target.closest("li");
   const fetchObj = {
     name: clickedEl.querySelector(".li-city").textContent,
@@ -33,10 +33,30 @@ const fetchSelectedCityData = e => {
   }
   clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
   clearList(mainEl);
-  fetchCityData(fetchObj);
+  const returnedData = await fetchCityData(fetchObj);
+  const filteredData = filterData(returnedData, clickedEl.querySelector(".li-state") ? fetchObj.state : null);
+  return filteredData;
 }
 
-const handleSearch = () => {
+const filterData = (data, optionalState) => {
+  const filteredData = {
+    city: data.name,
+    country: data.sys.country,
+    feels_like: data.main.feels_like,
+    humidity: data.main.humidity,
+    temp: data.main.temp,
+    pressure: data.main.pressure,
+    sunrise: data.sys.sunrise,
+    sunset: data.sys.sunset,
+    visibility: data.visibility,
+    wind_speed: data.wind.speed
+  }
+  optionalState ? filteredData.state: optionalState;
+
+  return filteredData;
+}
+
+const handleSearch = async () => {
   const searchTerms = searchInput.value;
   const foundJson = findCityInJson(searchTerms);
   clearList(mainEl);
@@ -92,7 +112,9 @@ const handleSearch = () => {
       resultsUL.appendChild(newLI);
     }
   } else {
-    fetchCityData(foundJson[0]);
+    const returnedData = await fetchCityData(foundJson[0]);
+    const filteredData = filterData(returnedData, foundJson.state ? foundJson.state : null);
+    return filteredData;
   }
 }
 
