@@ -5,6 +5,7 @@ import cityList from "./city.list.json"
 import makeNewEl from "./makeNewEl.js";
 
 const clearList = parentElement => {
+  pageMsgs.textContent = "";
   while (parentElement.firstChild) {
     parentElement.removeChild(parentElement.firstChild);
   }
@@ -65,17 +66,16 @@ const handleSearch = async () => {
   const searchTerms = searchInput.value;
   const foundJson = findCityInJson(searchTerms);
   clearList(mainEl);
+  if (foundJson.length === 0) {
+    pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
+    return;
+  }
   if (foundJson.length > 1) {
-    const resultsCount = makeNewEl({
-      tag: "span", 
-      classes: "results-count",
-      text: `${foundJson.length} cities found matching "${searchTerms}"`
-    });
+    pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
     const resultsUL = makeNewEl({
       tag: "ul", 
       classes: "results-ul"
     });
-    mainEl.appendChild(resultsCount);
     mainEl.appendChild(resultsUL);
     for (let i = 0; i < foundJson.length; i ++) {
       const currentObj = foundJson[i];
@@ -130,6 +130,7 @@ const handleSearch = async () => {
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const mainEl = document.getElementById("main");
+const pageMsgs = document.getElementById("page-msgs");
 
 searchForm.addEventListener("submit", e => {
   e.preventDefault();
