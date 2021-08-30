@@ -17,9 +17,11 @@ const findCityInJson = cityName => {
   return foundCities;
 };
 
-const fetchCityData = async cityObj => {
+const fetchCityData = async fetchObj => {
+  console.log("FETCH OBJ:");
+  console.log(fetchObj);
   const apiKey = secret.key;
-  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityObj.name},${cityObj.state ? cityObj.state + "," : ""}${cityObj.country}&appid=${apiKey}`);
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fetchObj.lat}&lon=${fetchObj.lon}&exclude=minutely,hourly&appid=${apiKey}`);
   const data = await response.json();
   console.log(data);
   return data;
@@ -27,31 +29,34 @@ const fetchCityData = async cityObj => {
 
 const fetchSelectedCityData = async e => {
   const clickedEl = e.target.closest("li");
+  const coordinates = clickedEl.dataset.coordinates.split(",");
   const fetchObj = {
     name: clickedEl.querySelector(".li-city").textContent,
-    country: clickedEl.querySelector(".li-country").textContent
+    country: clickedEl.querySelector(".li-country").textContent,
+    lat: coordinates[0].trim(),
+    lon: coordinates[1].trim()
   }
   clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
   clearList(mainEl);
   const returnedData = await fetchCityData(fetchObj);
-  const filteredData = filterData(returnedData, clickedEl.querySelector(".li-state") ? fetchObj.state : null);
+  const filteredData = filterData(returnedData, fetchObj);
   return filteredData;
 }
 
-const filterData = (data, optionalState) => {
+const filterData = (data, fetchObj) => {
   const filteredData = {
-    city: data.name,
-    country: data.sys.country,
-    feels_like: data.main.feels_like,
-    humidity: data.main.humidity,
-    temp: data.main.temp,
-    pressure: data.main.pressure,
-    sunrise: data.sys.sunrise,
-    sunset: data.sys.sunset,
-    visibility: data.visibility,
-    wind_speed: data.wind.speed
+    city: fetchObj.name,
+    country: fetchObj.country,
+    feels_like: data.current.feels_like,
+    humidity: data.current.humidity,
+    temp: data.current.temp,
+    pressure: data.current.pressure,
+    sunrise: data.current.sunrise,
+    sunset: data.current.sunset,
+    visibility: data.current.visibility,
+    wind_speed: data.current.wind_speed
   }
-  optionalState ? filteredData.state: optionalState;
+  fetchObj.state ? filteredData.state: fetchObj.state;
 
   return filteredData;
 }
@@ -100,7 +105,8 @@ const handleSearch = async () => {
         tag: "li",
         classes: "results-li",
         attributes: {
-          id: `li-${i + 1}`
+          id: `li-${i + 1}`,
+          "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
         }
       });
       newLI.appendChild(cityEl);
@@ -112,8 +118,11 @@ const handleSearch = async () => {
       resultsUL.appendChild(newLI);
     }
   } else {
-    const returnedData = await fetchCityData(foundJson[0]);
-    const filteredData = filterData(returnedData, foundJson.state ? foundJson.state : null);
+    const fetchObj = foundJson[0];
+    fetchObj.lat = foundJson[0].coord.lat;
+    fetchObj.lon = foundJson[0].coord.lon; 
+    const returnedData = await fetchCityData(fetchObj);
+    const filteredData = filterData(returnedData, fetchObj);
     return filteredData;
   }
 }
