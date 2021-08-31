@@ -1,6 +1,5 @@
 import secret from "./secret.js";
-import cityList from "./city.list.json"
-import makeNewEl from "./makeNewEl.js";
+import cityList from "./city.list.min.json";
 import ui from "./ui.js";
 
 const data_ops = {
@@ -10,17 +9,15 @@ const data_ops = {
     console.log(foundCities);
     return foundCities;
   },
-  
-  async fetchCityData( fetchObj) {
+  async fetchCityData(fetchObj) {
     console.log("FETCH OBJ:");
     console.log(fetchObj);
     const apiKey = secret.key;
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fetchObj.lat}&lon=${fetchObj.lon}&exclude=minutely,hourly&appid=${apiKey}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   },
-  
   async fetchSelectedCityData(e) {
     const clickedEl = e.target.closest("li");
     const coordinates = clickedEl.dataset.coordinates.split(",");
@@ -37,90 +34,55 @@ const data_ops = {
     return filteredData;
   },
   filterData(data, fetchObj) {
+    console.log(data);
     const filteredData = {
-      city: fetchObj.name,
-      country: fetchObj.country,
-      feels_like: data.current.feels_like,
-      humidity: data.current.humidity,
-      temp: data.current.temp,
-      pressure: data.current.pressure,
-      sunrise: data.current.sunrise,
-      sunset: data.current.sunset,
-      visibility: data.current.visibility,
-      wind_speed: data.current.wind_speed
+      current: {
+        city: fetchObj.name,
+        country: fetchObj.country,
+        feels_like: data.current.feels_like,
+        humidity: data.current.humidity,
+        pressure: data.current.pressure,
+        temp: data.current.temp,
+        main: data.current.weather[0].main,
+        description: data.current.weather[0].description,
+        icon: data.current.weather[0].icon,
+        weather_id: data.current.weather[0].id,
+        sunrise: data.current.sunrise,
+        sunset: data.current.sunset,
+        clouds: data.current.clouds,
+        visibility: data.current.visibility,
+        wind_speed: data.current.wind_speed,
+        timezone: data.timezone 
+      },
+      forecast: []
     }
-    fetchObj.state ? filteredData.state: fetchObj.state;
-  
-    return filteredData;
-  },
-  async handleSearch() {
-    const searchTerms = searchInput.value;
-    const foundJson = this.findCityInJson(searchTerms);
-    ui.clearList(mainEl);
-    if (foundJson.length === 0) {
-      pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
-      return;
-    }
-    if (foundJson.length > 1) {
-      pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
-      const resultsUL = makeNewEl({
-        tag: "ul", 
-        classes: "results-ul"
+    fetchObj.state ? filteredData.current.state = fetchObj.state : null;
+
+    for (let day of data.daily) {
+      filteredData.forecast.push({
+        day_temp: day.temp.day,
+        hi_temp: day.temp.max,
+        low_temp: day.temp.min,
+        humidity: day.humidity,
+        chance_of_precipitation: day.pop,
+        main: day.weather.main,
+        description: day.weather.description,
+        icon: day.weather.icon,
+        weather_id: day.weather.id,
+        sunrise: day.sunrise,
+        sunset: day.sunset,
+        clouds: day.clouds,
+        wind_speed: day.wind_speed
       });
-      mainEl.appendChild(resultsUL);
-      for (let i = 0; i < foundJson.length; i ++) {
-        const currentObj = foundJson[i];
-        const cityEl = makeNewEl({
-          tag: "span",
-          classes: "li-city",
-          text: `${currentObj.name}`
-        });
-        const commaEl = makeNewEl({
-          tag: "span",
-          text: ", "
-        });
-        let stateEl = currentObj.state;
-        if (stateEl) {
-          stateEl = makeNewEl({
-            tag: "span",
-            classes: "li-state",
-            text: currentObj.state
-          });
-        }
-        const countryEl = makeNewEl({
-          tag: "span",
-          classes: "li-country",
-          text: currentObj.country
-        });
-        const newLI = makeNewEl({
-          tag: "li",
-          classes: "results-li",
-          attributes: {
-            id: `li-${i + 1}`,
-            "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
-          }
-        });
-        newLI.appendChild(cityEl);
-        newLI.appendChild(commaEl.cloneNode(true));
-        stateEl ? newLI.appendChild(stateEl) : null;
-        stateEl ? newLI.appendChild(commaEl) : null;
-        newLI.appendChild(countryEl);
-        newLI.addEventListener("click", this.fetchSelectedCityData, false);
-        resultsUL.appendChild(newLI);
-      }
-    } else {
-      const fetchObj = foundJson[0];
-      fetchObj.lat = foundJson[0].coord.lat;
-      fetchObj.lon = foundJson[0].coord.lon; 
-      const returnedData = await this.fetchCityData(fetchObj);
-      const filteredData = this.filterData(returnedData, fetchObj);
-      return filteredData;
     }
+  
+    console.log(filteredData);
+    return filteredData;
   }
 }
 
-const searchInput = document.getElementById("search-input");
+// const searchInput = document.getElementById("search-input");
 const mainEl = document.getElementById("main");
-const pageMsgs = document.getElementById("page-msgs");
+// const pageMsgs = document.getElementById("page-msgs");
 
 export default data_ops;
