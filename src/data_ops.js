@@ -4,14 +4,14 @@ import ui from "./ui.js";
 
 const data_ops = {
   findCityInJson(cityName) {
-    console.log(cityName);
+    // console.log(cityName);
     const foundCities = cityList.filter(obj => obj.name.toLowerCase().includes(cityName.toLowerCase().trim()));
-    console.log(foundCities);
+    // console.log(foundCities);
     return foundCities;
   },
   async fetchCityData(fetchObj) {
-    console.log("FETCH OBJ:");
-    console.log(fetchObj);
+    // console.log("FETCH OBJ:");
+    // console.log(fetchObj);
     const apiKey = secret.key;
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fetchObj.lat}&lon=${fetchObj.lon}&exclude=minutely,hourly&appid=${apiKey}`);
     const data = await response.json();
@@ -28,13 +28,13 @@ const data_ops = {
       lon: coordinates[1].trim()
     }
     clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
-    ui.clearList(mainEl);
+    // ui.clearList(mainEl);
     const returnedData = await data_ops.fetchCityData(fetchObj);
     const filteredData = data_ops.filterData(returnedData, fetchObj);
     return filteredData;
   },
   filterData(data, fetchObj) {
-    console.log(data);
+    // console.log(data);
     const filteredData = {
       current: {
         city: fetchObj.name,
@@ -46,13 +46,13 @@ const data_ops = {
         main: data.current.weather[0].main,
         description: data.current.weather[0].description,
         icon: data.current.weather[0].icon,
-        weather_id: data.current.weather[0].id,
+        // weather_id: data.current.weather[0].id,
         sunrise: data.current.sunrise,
         sunset: data.current.sunset,
         clouds: data.current.clouds,
         visibility: data.current.visibility,
         wind_speed: data.current.wind_speed,
-        timezone: data.timezone 
+        // timezone: data.timezone
       },
       forecast: []
     }
@@ -68,7 +68,7 @@ const data_ops = {
         main: day.weather.main,
         description: day.weather.description,
         icon: day.weather.icon,
-        weather_id: day.weather.id,
+        // weather_id: day.weather.id,
         sunrise: day.sunrise,
         sunset: day.sunset,
         clouds: day.clouds,

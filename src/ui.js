@@ -4,7 +4,7 @@ import makeNewEl from "./makeNewEl";
 
 const ui = {
   clearList(parentElement) {
-    pageMsgs.textContent = "";
+    // pageMsgs.textContent = "";
     while (parentElement.firstChild) {
       parentElement.removeChild(parentElement.firstChild);
     }
@@ -59,12 +59,12 @@ const ui = {
   },
   async handleLocationClick(e) {
     const filteredData = await data_ops.fetchSelectedCityData(e);
-    currentWeather.createLocation(filteredData);
+    currentWeather.populateCurrentWeather(filteredData);
   },
   async handleSearch() {
     const searchTerms = searchInput.value;
     const foundJson = data_ops.findCityInJson(searchTerms);
-    ui.clearList(mainEl);
+    // ui.clearList(mainEl);
     if (foundJson.length === 0) {
       pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
       return;
@@ -72,12 +72,13 @@ const ui = {
     if (foundJson.length > 1) {
       ui.listFoundLocations(foundJson, searchTerms);
     } else {
+      pageMsgs.textContent = "";
       const fetchObj = foundJson[0];
       fetchObj.lat = foundJson[0].coord.lat;
       fetchObj.lon = foundJson[0].coord.lon; 
       const returnedData = await data_ops.fetchCityData(fetchObj);
       const filteredData = data_ops.filterData(returnedData, fetchObj);
-      currentWeather.createLocation(filteredData);
+      currentWeather.populateCurrentWeather(filteredData);
       return filteredData;
     }
   }

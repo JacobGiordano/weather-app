@@ -1,11 +1,18 @@
-import makeNewEl from "./makeNewEl";
-
 const currentWeather = {
-  createLocation(filteredData) {
+  populateCurrentWeather(filteredData) {
     const data = filteredData.current;
-    const spanArray = [data.city, data.country];
-    data.state ? spanArray.push(data.state) : null;
-    console.log(spanArray);
+
+    for (const [key, value] of Object.entries(data)) {
+      const currentSelector = key.replace("_", "-");
+      const selectorString = `current-weather-${currentSelector}`;
+      const currentEl = document.getElementById(selectorString);
+      console.log(value);
+      currentEl.textContent = value;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(data, "state")) {
+      document.getElementById("current-weather-state").textContent = "";
+    }
   }
 }
 
@@ -14,9 +21,8 @@ export default currentWeather;
 // City name, State name (if applicable)
 // Country name
 // Icon w/ Current temp overlaid
+// Description and/or Main info
 // Feels like temp / Humidity
 // Pressure / Wind speed
-// Low temp / High temp
 // Clouds / Visibility
-// Description and/or Main info
 // Sunrise / Sunset
