@@ -15,7 +15,16 @@
       <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
       <button type="submit" id="search-btn" class="search-btn">Search</button>
     </form>
+    <div id="temp-unit-slider" class="temp-unit-slider">
+      <label for="temp-unit-checkbox">Temperature unit</label>
+      <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit-checkbox">
+      <div class="slider-options">
+        <div class="temp-unit">C</div>
+        <div class="temp-unit">F</div>
+      </div>
+    </div>
     <span id="page-msgs" class="page-msgs"></span>
+    <ul id="results-ul" class="results-ul"></ul>
   </header>
   <main id="main" class="main">
     <div id="current-weather" class="current-weather">
@@ -52,6 +61,9 @@
       </div>
     </div>
   </main>
+  <footer id="footer" class="footer">
+    <p>Weather icons by <a href="https://basmilius.github.io/weather-icons/" target="_blank">Bas Milius</a></p>
+  </footer>
   <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

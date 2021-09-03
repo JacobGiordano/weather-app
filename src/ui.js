@@ -3,7 +3,7 @@ import data_ops from "./data_ops";
 import makeNewEl from "./makeNewEl";
 
 const ui = {
-  clearList(parentElement) {
+  clearElement(parentElement) {
     // pageMsgs.textContent = "";
     while (parentElement.firstChild) {
       parentElement.removeChild(parentElement.firstChild);
@@ -11,11 +11,10 @@ const ui = {
   },
   listFoundLocations(foundJson, searchTerms) {
     pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
-    const resultsUL = makeNewEl({
-      tag: "ul", 
-      classes: "results-ul"
-    });
-    mainEl.appendChild(resultsUL);
+
+    const resultsUL = document.getElementById("results-ul");
+    this.clearElement(resultsUL);
+
     for (let i = 0; i < foundJson.length; i ++) {
       const currentObj = foundJson[i];
       const cityEl = makeNewEl({
@@ -64,7 +63,7 @@ const ui = {
   async handleSearch() {
     const searchTerms = searchInput.value;
     const foundJson = data_ops.findCityInJson(searchTerms);
-    // ui.clearList(mainEl);
+    // ui.clearElement(mainEl);
     if (foundJson.length === 0) {
       pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
       return;
@@ -81,11 +80,19 @@ const ui = {
       currentWeather.populateCurrentWeather(filteredData);
       return filteredData;
     }
+  },
+  handleTempUnitClick(e) {
+    tempUnitCheckbox.checked ? tempUnitCheckbox.checked = false : tempUnitCheckbox.checked = true;
   }
 }
 
 const searchInput = document.getElementById("search-input");
-const mainEl = document.getElementById("main");
 const pageMsgs = document.getElementById("page-msgs");
+const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
+const tempUnitSlider = document.getElementById("temp-unit-slider");
+
+tempUnitSlider.addEventListener("click", e => {
+  ui.handleTempUnitClick(e);
+})
 
 export default ui;

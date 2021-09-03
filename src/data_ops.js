@@ -1,6 +1,5 @@
 import secret from "./secret.js";
 import cityList from "./city.list.min.json";
-import ui from "./ui.js";
 
 const data_ops = {
   findCityInJson(cityName) {
@@ -28,7 +27,7 @@ const data_ops = {
       lon: coordinates[1].trim()
     }
     clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
-    // ui.clearList(mainEl);
+    // ui.clearElement(mainEl);
     const returnedData = await data_ops.fetchCityData(fetchObj);
     const filteredData = data_ops.filterData(returnedData, fetchObj);
     return filteredData;
@@ -80,9 +79,5 @@ const data_ops = {
     return filteredData;
   }
 }
-
-// const searchInput = document.getElementById("search-input");
-const mainEl = document.getElementById("main");
-// const pageMsgs = document.getElementById("page-msgs");
 
 export default data_ops;
