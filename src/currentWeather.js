@@ -7,7 +7,12 @@ const currentWeather = {
       const selectorString = `current-weather-${currentSelector}`;
       const currentEl = document.getElementById(selectorString);
       console.log(value);
-      currentEl.textContent = value;
+      if (selectorString === "current-weather-icon") {
+        const svgIcon = `../src/openweathermap/${value}.svg`;
+        currentEl.src = svgIcon;
+      } else {
+        currentEl.textContent = value;
+      }
     }
 
     if (!Object.prototype.hasOwnProperty.call(data, "state")) {
