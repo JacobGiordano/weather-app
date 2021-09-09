@@ -4,7 +4,6 @@ import makeNewEl from "./makeNewEl";
 
 const ui = {
   clearElement(parentElement) {
-    // pageMsgs.textContent = "";
     while (parentElement.firstChild) {
       parentElement.removeChild(parentElement.firstChild);
     }
@@ -12,8 +11,8 @@ const ui = {
   listFoundLocations(foundJson, searchTerms) {
     pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
 
-    const resultsUL = document.getElementById("results-ul");
-    this.clearElement(resultsUL);
+    const resultsUl = document.getElementById("results-ul");
+    this.clearElement(resultsUl);
 
     for (let i = 0; i < foundJson.length; i ++) {
       const currentObj = foundJson[i];
@@ -39,7 +38,7 @@ const ui = {
         classes: "li-country",
         text: currentObj.country
       });
-      const newLI = makeNewEl({
+      const newLi = makeNewEl({
         tag: "li",
         classes: "results-li",
         attributes: {
@@ -47,23 +46,26 @@ const ui = {
           "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
         }
       });
-      newLI.appendChild(cityEl);
-      newLI.appendChild(commaEl.cloneNode(true));
-      stateEl ? newLI.appendChild(stateEl) : null;
-      stateEl ? newLI.appendChild(commaEl) : null;
-      newLI.appendChild(countryEl);
-      newLI.addEventListener("click", this.handleLocationClick, false);
-      resultsUL.appendChild(newLI);
+      newLi.appendChild(cityEl);
+      newLi.appendChild(commaEl.cloneNode(true));
+      stateEl ? newLi.appendChild(stateEl) : null;
+      stateEl ? newLi.appendChild(commaEl) : null;
+      newLi.appendChild(countryEl);
+      newLi.addEventListener("click", this.handleLocationClick, false);
+      newLi.classList.add("fade-in");
+      resultsUl.appendChild(newLi);
+      resultsWrapper.classList.add("fade-in");
     }
   },
   async handleLocationClick(e) {
     const filteredData = await data_ops.fetchSelectedCityData(e);
+    pageMsgs.textContent = "";
+    ui.clearElement(resultsUl);
     currentWeather.populateCurrentWeather(filteredData);
   },
   async handleSearch() {
     const searchTerms = searchInput.value;
     const foundJson = data_ops.findCityInJson(searchTerms);
-    // ui.clearElement(mainEl);
     if (foundJson.length === 0) {
       pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
       return;
@@ -81,15 +83,27 @@ const ui = {
       return filteredData;
     }
   },
-  handleTempUnitClick(e) {
+  handleTempUnitClick() {
     tempUnitCheckbox.checked ? tempUnitCheckbox.checked = false : tempUnitCheckbox.checked = true;
+
+    if (tempUnitCheckbox.checked) {
+      farenheit.classList.add("selected");
+      celcius.classList.remove("selected");
+    } else {
+      celcius.classList.add("selected");
+      farenheit.classList.remove("selected");
+    }
   }
 }
 
 const searchInput = document.getElementById("search-input");
+const resultsWrapper = document.getElementById("results-wrapper");
 const pageMsgs = document.getElementById("page-msgs");
+const resultsUl = document.getElementById("results-ul");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 const tempUnitSlider = document.getElementById("temp-unit-slider");
+const celcius = document.getElementById("celcius");
+const farenheit = document.getElementById("farenheit");
 
 tempUnitSlider.addEventListener("click", e => {
   ui.handleTempUnitClick(e);

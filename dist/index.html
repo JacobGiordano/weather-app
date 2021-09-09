@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Balloon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/dist/css/styles.css">
 </head>
 <body>
@@ -17,47 +20,73 @@
     </form>
     <div id="temp-unit-slider" class="temp-unit-slider">
       <label for="temp-unit-checkbox">Temperature unit</label>
-      <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit-checkbox">
+      <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit-checkbox hidden">
       <div class="slider-options">
-        <div class="temp-unit">C</div>
-        <div class="temp-unit">F</div>
+        <div id="celcius" class="temp-unit selected">C&deg;</div>
+        <div id="farenheit" class="temp-unit">F&deg;</div>
       </div>
     </div>
-    <span id="page-msgs" class="page-msgs"></span>
-    <ul id="results-ul" class="results-ul"></ul>
   </header>
   <main id="main" class="main">
     <div id="current-weather" class="current-weather">
-      <div class="current-weather__row">
-        <div id="current-weather-city" class="current-weather__city"></div>
-        <div id="current-weather-state" class="current-weather__state"></div>
+      <div id="results-wrapper" class="results-wrapper">
+        <span id="page-msgs" class="page-msgs"></span>
+        <ul id="results-ul" class="results-ul"></ul>
       </div>
-      <div class="current-weather__row">
+      <div class="current-weather__row current-weather__city-state">
+        <div class="city-state-wrapper">
+          <div id="current-weather-city" class="current-weather__city"></div>
+          <div id="current-weather-state" class="current-weather__state"></div>
+        </div>
         <div id="current-weather-country" class="current-weather__country"></div>
       </div>
-      <div class="current-weather__row">
-        <img id="current-weather-icon" class="current-weather__icon"></img>
+      <div class="current-weather__row current-weather__temp-icon">
         <div id="current-weather-temp" class="current-weather__current-temp"></div>
+        <img id="current-weather-icon" class="current-weather__icon"></img>
       </div>
       <div class="current-weather__row">
-        <div id="current-weather-main" class="current-weather__main"></div>
+        <!-- <div id="current-weather-main" class="current-weather__main"></div> -->
         <div id="current-weather-description" class="current-weather__description"></div>
       </div>
       <div class="current-weather__row">
-        <div id="current-weather-feels-like" class="current-weather__feels-like"></div>
-        <div id="current-weather-humidity" class="current-weather__humidity"></div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Feels like</span>
+          <div id="current-weather-feels-like" class="current-weather__feels-like"></div>
+        </div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Humidity</span>
+          <div id="current-weather-humidity" class="current-weather__humidity"></div>
+        </div>
       </div>
       <div class="current-weather__row">
-        <div id="current-weather-pressure" class="current-weather__pressure"></div>
-        <div id="current-weather-wind-speed" class="current-weather__wind-speed"></div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Pressure</span>
+          <div id="current-weather-pressure" class="current-weather__pressure"></div>
+        </div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Wind speed</span>
+          <div id="current-weather-wind-speed" class="current-weather__wind-speed"></div>
+        </div>
       </div>
       <div class="current-weather__row">
-        <div id="current-weather-clouds" class="current-weather__clouds"></div>
-        <div id="current-weather-visibility" class="current-weather__visibility"></div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Clouds</span>
+          <div id="current-weather-clouds" class="current-weather__clouds"></div>
+        </div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Visibility</span>
+          <div id="current-weather-visibility" class="current-weather__visibility"></div>
+        </div>
       </div>
       <div class="current-weather__row">
-        <div id="current-weather-sunrise" class="current-weather__sunrise"></div>
-        <div id="current-weather-sunset" class="current-weather__sunset"></div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Sunrise</span>
+          <div id="current-weather-sunrise" class="current-weather__sunrise"></div>
+        </div>
+        <div class="current-weather__wrapper">
+          <span class="current-weather__title">Sunset</span>
+          <div id="current-weather-sunset" class="current-weather__sunset"></div>
+        </div>
       </div>
     </div>
   </main>
