@@ -83,16 +83,24 @@ const ui = {
       return filteredData;
     }
   },
-  handleTempUnitClick() {
-    tempUnitCheckbox.checked ? tempUnitCheckbox.checked = false : tempUnitCheckbox.checked = true;
-
-    if (tempUnitCheckbox.checked) {
+  toggleTemp(tempCheckboxIsCheckedBool) {
+    tempCheckboxIsCheckedBool ? tempUnitCheckbox.checked = false : tempUnitCheckbox.checked = true;
+    if (!tempCheckboxIsCheckedBool) {
       farenheit.classList.add("selected");
       celcius.classList.remove("selected");
     } else {
       celcius.classList.add("selected");
       farenheit.classList.remove("selected");
     }
+  },
+  updateTemps() {
+    const tempElementIdArray = ["current-weather-temp", "current-weather-feels-like"];
+    currentWeather.convertTemps(tempElementIdArray);
+    data_ops.setTempCheckbox();
+  },
+  handleTempUnitClick() {
+    ui.toggleTemp(tempUnitCheckbox.checked);
+    ui.updateTemps();
   }
 }
 

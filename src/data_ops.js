@@ -75,8 +75,15 @@ const data_ops = {
       });
     }
   
-    console.log(filteredData);
+    // console.log(filteredData);
     return filteredData;
+  },
+  getTempCheckbox() {
+    return localStorage.getItem("tempCheckbox");
+  },
+  setTempCheckbox() {
+    const currentState = document.getElementById("temp-unit-checkbox").checked;
+    localStorage.setItem("tempCheckbox", currentState);
   }
 }
 
