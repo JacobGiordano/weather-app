@@ -9,52 +9,62 @@ const ui = {
     }
   },
   listFoundLocations(foundJson, searchTerms) {
-    pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
-
     const resultsUl = document.getElementById("results-ul");
+    pageMsgs.textContent = "";
     this.clearElement(resultsUl);
+    resultsEl.classList.remove("fade-in");
 
-    for (let i = 0; i < foundJson.length; i ++) {
-      const currentObj = foundJson[i];
-      const cityEl = makeNewEl({
-        tag: "span",
-        classes: "li-city",
-        text: `${currentObj.name}`
-      });
-      const commaEl = makeNewEl({
-        tag: "span",
-        text: ", "
-      });
-      let stateEl = currentObj.state;
-      if (stateEl) {
-        stateEl = makeNewEl({
+    if (foundJson.length === 0) {
+      pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
+    } else if (foundJson.length > 1) {
+
+      pageMsgs.textContent = `${foundJson.length} cities found matching "${searchTerms}"`
+
+      for (let i = 0; i < foundJson.length; i ++) {
+        const currentObj = foundJson[i];
+        const cityEl = makeNewEl({
           tag: "span",
-          classes: "li-state",
-          text: currentObj.state
+          classes: "li-city",
+          text: `${currentObj.name}`
         });
-      }
-      const countryEl = makeNewEl({
-        tag: "span",
-        classes: "li-country",
-        text: currentObj.country
-      });
-      const newLi = makeNewEl({
-        tag: "li",
-        classes: "results-li",
-        attributes: {
-          id: `li-${i + 1}`,
-          "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
+        const commaEl = makeNewEl({
+          tag: "span",
+          text: ", "
+        });
+        let stateEl = currentObj.state;
+        if (stateEl) {
+          stateEl = makeNewEl({
+            tag: "span",
+            classes: "li-state",
+            text: currentObj.state
+          });
         }
-      });
-      newLi.appendChild(cityEl);
-      newLi.appendChild(commaEl.cloneNode(true));
-      stateEl ? newLi.appendChild(stateEl) : null;
-      stateEl ? newLi.appendChild(commaEl) : null;
-      newLi.appendChild(countryEl);
-      newLi.addEventListener("click", this.handleLocationClick, false);
-      newLi.classList.add("fade-in");
-      resultsUl.appendChild(newLi);
-      resultsWrapper.classList.add("fade-in");
+        const countryEl = makeNewEl({
+          tag: "span",
+          classes: "li-country",
+          text: currentObj.country
+        });
+        const newLi = makeNewEl({
+          tag: "li",
+          classes: "results__li",
+          attributes: {
+            id: `li-${i + 1}`,
+            "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
+          }
+        });
+        newLi.appendChild(cityEl);
+        newLi.appendChild(commaEl.cloneNode(true));
+        stateEl ? newLi.appendChild(stateEl) : null;
+        stateEl ? newLi.appendChild(commaEl) : null;
+        newLi.appendChild(countryEl);
+        newLi.addEventListener("click", this.handleLocationClick, false);
+        newLi.classList.add("fade-in");
+        resultsUl.appendChild(newLi);
+      }
+    }
+    resultsEl.classList.add("fade-in");
+    if (!currentWeatherEl.classList.contains("fade-in")) {
+      currentWeatherEl.classList.add("fade-in");
     }
   },
   async handleLocationClick(e) {
@@ -64,13 +74,12 @@ const ui = {
     currentWeather.populateCurrentWeather(filteredData);
   },
   async handleSearch() {
-    const searchTerms = searchInput.value;
-    const foundJson = data_ops.findCityInJson(searchTerms);
-    if (foundJson.length === 0) {
-      pageMsgs.textContent = `No cities found matching "${searchTerms}". Please try again.`;
-      return;
+    const searchTerms = searchInput.value.trim();
+    let foundJson;
+    if (searchTerms !== undefined && searchTerms !== "") {
+      foundJson = data_ops.findCityInJson(searchTerms);
     }
-    if (foundJson.length > 1) {
+    if (foundJson.length === 0 || foundJson.length > 1) {
       ui.listFoundLocations(foundJson, searchTerms);
     } else {
       pageMsgs.textContent = "";
@@ -101,12 +110,28 @@ const ui = {
   handleTempUnitClick() {
     ui.toggleTemp(tempUnitCheckbox.checked);
     ui.updateTemps();
+  },
+  closeResults() {
+    resultsEl.classList.add("fade-out");
+    setTimeout(() => {
+      if (currentWeatherEl.classList.contains("day") || currentWeatherEl.classList.contains("night") || currentWeatherEl.classList.contains("gray")) {
+        resultsEl.classList.remove("fade-in");
+        resultsEl.classList.remove("fade-out");
+      } else {
+        resultsEl.classList.remove("fade-in");
+        resultsEl.classList.remove("fade-out");
+        currentWeatherEl.classList.remove("fade-in");
+        currentWeatherEl.classList.remove("fade-out");
+      }
+    }, 1000);
   }
 }
 
+const currentWeatherEl = document.getElementById("current-weather");
 const searchInput = document.getElementById("search-input");
-const resultsWrapper = document.getElementById("results-wrapper");
-const pageMsgs = document.getElementById("page-msgs");
+const resultsEl = document.getElementById("results");
+const resultsCloseBtn = document.getElementById("results-close-btn");
+const pageMsgs = document.getElementById("results-msg");
 const resultsUl = document.getElementById("results-ul");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 const tempUnitSlider = document.getElementById("temp-unit-slider");
@@ -115,6 +140,8 @@ const farenheit = document.getElementById("farenheit");
 
 tempUnitSlider.addEventListener("click", e => {
   ui.handleTempUnitClick(e);
-})
+});
+
+resultsCloseBtn.addEventListener("click", ui.closeResults, false);
 
 export default ui;

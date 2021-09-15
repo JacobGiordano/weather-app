@@ -14,7 +14,6 @@ const init = () => {
   const storedCheckboxState = data_ops.getTempCheckbox();
   console.log(storedCheckboxState);
   if (storedCheckboxState === "true") {
-    console.log("WTF?!");
     ui.toggleTemp(false)
     ui.updateTemps();
   }

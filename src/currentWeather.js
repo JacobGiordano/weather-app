@@ -16,7 +16,7 @@ const currentWeather = {
       const currentSelector = key.replace("_", "-");
       const selectorString = `current-weather-${currentSelector}`;
       const currentEl = document.getElementById(selectorString);
-      console.log(value);
+      // console.log(value);
       if (selectorString === "current-weather-icon") {
         const svgIcon = `../src/openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
@@ -35,7 +35,7 @@ const currentWeather = {
     }
 
     !currentWeatherEl.classList.contains("fade-in") ? currentWeatherEl.classList.add("fade-in") : null;
-    resultsWrapper.classList.contains("fade-in") ? resultsWrapper.classList.remove("fade-in") : null;
+    resultsEl.classList.contains("fade-in") ? resultsEl.classList.remove("fade-in") : null;
     await new Promise(resolve => setTimeout(resolve, 750));
     currentWeatherEl.classList.remove("fade-out");
     mainEl.classList.remove("loading");
@@ -56,10 +56,10 @@ const currentWeather = {
     for (let i = 0; i < arrayOfElements.length; i++) {
       const currentEl = document.getElementById(arrayOfElements[i]);
       if (currentEl && currentEl.textContent!== null) {
-        console.log(currentEl.id);
+        // console.log(currentEl.id);
         const splitContent = currentEl.textContent.split("°")[0];
         tempUnitCheckbox.checked ? currentEl.textContent = `${currentWeather.convertToFarFromCel(splitContent)}\xB0 F` : currentEl.textContent = `${currentWeather.convertToCelFromFar(splitContent)}\xB0 C`;
-        console.log(splitContent);
+        // console.log(splitContent);
       }
     }
   }
@@ -67,7 +67,7 @@ const currentWeather = {
 
 const mainEl = document.getElementById("main");
 const currentweather = document.getElementById("current-weather");
-const resultsWrapper = document.getElementById("results-wrapper");
+const resultsEl = document.getElementById("results");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 
 export default currentWeather;
