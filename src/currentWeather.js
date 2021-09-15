@@ -20,7 +20,15 @@ const currentWeather = {
       if (selectorString === "current-weather-icon") {
         const svgIcon = `../src/openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
-        value.includes("d") ? currentweather.classList.add("day") : currentweather.classList.add("night");
+        if (value === "09d" || value === "10d" || value === "11d" || value === "13d" || value === "50d") {
+          currentweather.classList.add("day-gray");
+        } else if (value === "09n" || value === "10n" || value === "11n" || value === "13n" || value === "50n") {
+          currentweather.classList.add("night-gray");
+        } else if (value.includes("d")) {
+          currentweather.classList.add("day");
+        } else if (value.includes("n")) {
+          currentweather.classList.add("night");
+        }
       } else if (selectorString === "current-weather-state") {
         currentEl.textContent = `, ${value}`;
       } else if (selectorString === "current-weather-temp" || selectorString === "current-weather-feels-like") {

@@ -91,7 +91,7 @@ footer {
   transform: translateX(0%);
 }
 
-.temp-unit-checkbox:checked ~ .slider-options:before {
+.temp-unit__checkbox:checked ~ .slider-options:before {
   transform: translateX(124%);
 }
 
@@ -205,11 +205,16 @@ footer {
   padding: 1rem;
   opacity: 0;
   overflow: auto;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   transition: all ease-in-out 1s;
 }
 
-.current-weather.gray {
-  background: linear-gradient(180deg, #363644 -10%, #5f6c75 30%, #3c4952 60%, #1f1f29 80%);
+.current-weather.day-gray {
+  background: linear-gradient(180deg, #49495a -10%, #5a708a 30%, #485d79 60%, #343f50 80%);
+}
+
+.current-weather.night-gray {
+  background: url("/src/openweathermap/stars.svg"), linear-gradient(180deg, #363644 -10%, #5a6a7d 30%, #46566b 60%, #2a3240 80%);
 }
 
 .current-weather.day {
@@ -253,8 +258,18 @@ footer {
 
 .current-weather__icon {
   max-width: 300px;
-  margin: -1.75rem 0 -1rem;
+  margin: -2.75rem 0 -2rem;
 }
+
+.current-weather__description {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+
+/* --- Utility Classes --- */
 
 .fade-in {
   display: block;
