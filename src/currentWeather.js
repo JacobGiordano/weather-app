@@ -16,7 +16,7 @@ const currentWeather = {
       const currentSelector = key.replace("_", "-");
       const selectorString = `current-weather-${currentSelector}`;
       const currentEl = document.getElementById(selectorString);
-      // console.log(value);
+      console.log(value);
       if (selectorString === "current-weather-icon") {
         const svgIcon = `../src/openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
@@ -33,8 +33,12 @@ const currentWeather = {
         currentEl.textContent = `, ${value}`;
       } else if (selectorString === "current-weather-temp" || selectorString === "current-weather-feels-like") {
         tempUnitCheckbox.checked ? currentEl.textContent = `${this.convertToFarenheit(value)}\xB0 F` : currentEl.textContent = `${this.convertToCelcius(value)}\xB0 C`;
-      }else {
-        currentEl.textContent = value;
+      } else if (selectorString === "current-weather-sunrise" || selectorString === "current-weather-sunset") {
+        const unixTimestamp = value;
+        const localizedTime = new Date(unixTimestamp * 1000).toLocaleTimeString('en-US', { timeZone: data.timezone });
+        currentEl.textContent = localizedTime;
+      } else {
+        selectorString !== "current-weather-timezone" ? currentEl.textContent = value : null;
       }
     }
 

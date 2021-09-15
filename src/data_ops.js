@@ -51,7 +51,7 @@ const data_ops = {
         clouds: data.current.clouds,
         visibility: data.current.visibility,
         wind_speed: data.current.wind_speed,
-        // timezone: data.timezone
+        timezone: data.timezone
       },
       forecast: []
     }
