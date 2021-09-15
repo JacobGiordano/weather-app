@@ -114,7 +114,7 @@ const ui = {
   closeResults() {
     resultsEl.classList.add("fade-out");
     setTimeout(() => {
-      if (currentWeatherEl.classList.contains("day") || currentWeatherEl.classList.contains("night") || currentWeatherEl.classList.contains("gray")) {
+      if (currentWeatherEl.classList.contains("day") || currentWeatherEl.classList.contains("night") || currentWeatherEl.classList.contains("day-gray") || currentWeatherEl.classList.contains("night-gray")) {
         resultsEl.classList.remove("fade-in");
         resultsEl.classList.remove("fade-out");
       } else {
