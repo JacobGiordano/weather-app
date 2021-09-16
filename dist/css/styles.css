@@ -45,9 +45,25 @@ footer {
   z-index: 10;
 }
 
+/* --- Search Form--- */
+.search-form-and-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-form {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
 /* --- Temp Toggle --- */
 .temp-unit-slider {
   cursor: pointer;
+}
+
+.temp-unit-slider__label {
+  display: none;
 }
 
 .slider-options {

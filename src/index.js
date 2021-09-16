@@ -17,6 +17,11 @@ const init = () => {
     ui.toggleTemp(false)
     ui.updateTemps();
   }
+
+  window.cityList;
+  fetch("./city.list.min.json")
+      .then(response => response.json())
+      .then(data => window.cityList = data);
 };
 
 document.addEventListener("DOMContentLoaded", init);

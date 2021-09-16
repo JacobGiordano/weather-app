@@ -33,10 +33,18 @@ const currentWeather = {
         currentEl.textContent = `, ${value}`;
       } else if (selectorString === "current-weather-temp" || selectorString === "current-weather-feels-like") {
         tempUnitCheckbox.checked ? currentEl.textContent = `${this.convertToFarenheit(value)}\xB0 F` : currentEl.textContent = `${this.convertToCelcius(value)}\xB0 C`;
+      } else if (selectorString === "current-weather-wind-speed") {
+        currentEl.textContent = `${value}mph`;
       } else if (selectorString === "current-weather-sunrise" || selectorString === "current-weather-sunset") {
         const unixTimestamp = value;
         const localizedTime = new Date(unixTimestamp * 1000).toLocaleTimeString('en-US', { timeZone: data.timezone });
         currentEl.textContent = localizedTime;
+      } else if (selectorString === "current-weather-clouds" || selectorString === "current-weather-humidity" ) {
+        currentEl.textContent = `${value}%`;
+      } else if (selectorString === "current-weather-pressure") {
+        currentEl.textContent = `${value}hPa`;
+      } else if (selectorString === "current-weather-visibility") {
+        currentEl.textContent = `${(value * 0.001).toFixed(1)}km`;
       } else {
         selectorString !== "current-weather-timezone" ? currentEl.textContent = value : null;
       }

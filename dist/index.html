@@ -13,17 +13,19 @@
 <body>
   <header id="header" class="header">
     <h1 id="page-title" class="page-title">Weather Balloon</h1>
-    <form action="" id="search-form" class="search-form">
-      <label for="search-input" id="search-input-label" class="search-input-label">Enter a city name</label>
-      <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
-      <button type="submit" id="search-btn" class="search-btn">Search</button>
-    </form>
-    <div id="temp-unit-slider" class="temp-unit-slider">
-      <label for="temp-unit-checkbox" id="temp-unit-slider-label" class="temp-unit-slider__label">Temperature unit</label>
-      <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit__checkbox hidden">
-      <div class="slider-options">
-        <div id="celcius" class="temp-unit selected">C&deg;</div>
-        <div id="farenheit" class="temp-unit">F&deg;</div>
+    <div id="search-form-and-toggle-wrapper" class="search-form-and-toggle-wrapper">
+      <form action="" id="search-form" class="search-form">
+        <label for="search-input" id="search-input-label" class="search-input-label">Enter a city name</label>
+        <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
+        <button type="submit" id="search-btn" class="search-btn">Search</button>
+      </form>
+      <div id="temp-unit-slider" class="temp-unit-slider">
+        <label for="temp-unit-checkbox" id="temp-unit-slider-label" class="temp-unit-slider__label" aria-la>Temperature unit</label>
+        <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit__checkbox hidden">
+        <div class="slider-options">
+          <div id="celcius" class="temp-unit selected">C&deg;</div>
+          <div id="farenheit" class="temp-unit">F&deg;</div>
+        </div>
       </div>
     </div>
   </header>

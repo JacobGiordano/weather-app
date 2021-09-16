@@ -1,10 +1,9 @@
 import secret from "./secret.js";
-import cityList from "./city.list.min.json";
 
 const data_ops = {
   findCityInJson(cityName) {
     // console.log(cityName);
-    const foundCities = cityList.filter(obj => obj.name.toLowerCase().includes(cityName.toLowerCase().trim()));
+    const foundCities = window.cityList.filter(obj => obj.name.toLowerCase().includes(cityName.toLowerCase().trim()));
     // console.log(foundCities);
     return foundCities;
   },

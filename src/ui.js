@@ -78,6 +78,8 @@ const ui = {
     let foundJson;
     if (searchTerms !== undefined && searchTerms !== "") {
       foundJson = data_ops.findCityInJson(searchTerms);
+    } else {
+      foundJson = "";
     }
     if (foundJson.length === 0 || foundJson.length > 1) {
       ui.listFoundLocations(foundJson, searchTerms);
