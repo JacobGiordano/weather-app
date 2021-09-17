@@ -115,20 +115,26 @@ const ui = {
   },
   closeResults() {
     resultsEl.classList.add("fade-out");
-    setTimeout(() => {
-      if (currentWeatherEl.classList.contains("day") || currentWeatherEl.classList.contains("night") || currentWeatherEl.classList.contains("day-gray") || currentWeatherEl.classList.contains("night-gray")) {
+
+    if (bodyEl.classList.contains("day") || bodyEl.classList.contains("night") || bodyEl.classList.contains("day-gray") || bodyEl.classList.contains("night-gray")) {
+      setTimeout(() => {
         resultsEl.classList.remove("fade-in");
         resultsEl.classList.remove("fade-out");
-      } else {
+      }, 250);
+    } else {
+      currentWeatherEl.classList.add("fade-out");
+      setTimeout(() => {
         resultsEl.classList.remove("fade-in");
         resultsEl.classList.remove("fade-out");
         currentWeatherEl.classList.remove("fade-in");
         currentWeatherEl.classList.remove("fade-out");
-      }
-    }, 1000);
+      }, 250);
+    }
+
   }
 }
 
+const bodyEl = document.getElementById("body");
 const currentWeatherEl = document.getElementById("current-weather");
 const searchInput = document.getElementById("search-input");
 const resultsEl = document.getElementById("results");

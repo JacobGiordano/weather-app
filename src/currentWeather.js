@@ -7,10 +7,12 @@ const currentWeather = {
     currentWeatherEl.classList.contains("fade-in") ? currentWeatherEl.classList.add("fade-out") : null;
     
     await new Promise(resolve => setTimeout(resolve, 250));
-    currentWeatherEl.classList.remove("day");
-    currentWeatherEl.classList.remove("night");
-    currentWeatherEl.classList.remove("gray");
-    // currentWeatherEl.classList.remove("fade-in");
+    // currentWeatherEl.classList.remove("day");
+    // currentWeatherEl.classList.remove("night");
+    // currentWeatherEl.classList.remove("gray");
+    bodyEl.classList.remove("day");
+    bodyEl.classList.remove("night");
+    bodyEl.classList.remove("gray");
 
     for (const [key, value] of Object.entries(data)) {
       const currentSelector = key.replace("_", "-");
@@ -21,13 +23,13 @@ const currentWeather = {
         const svgIcon = `../src/openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
         if (value === "09d" || value === "10d" || value === "11d" || value === "13d" || value === "50d") {
-          currentweather.classList.add("day-gray");
+          bodyEl.classList.add("day-gray");
         } else if (value === "09n" || value === "10n" || value === "11n" || value === "13n" || value === "50n") {
-          currentweather.classList.add("night-gray");
+          bodyEl.classList.add("night-gray");
         } else if (value.includes("d")) {
-          currentweather.classList.add("day");
+          bodyEl.classList.add("day");
         } else if (value.includes("n")) {
-          currentweather.classList.add("night");
+          bodyEl.classList.add("night");
         }
       } else if (selectorString === "current-weather-state") {
         currentEl.textContent = `, ${value}`;
@@ -85,8 +87,8 @@ const currentWeather = {
   }
 }
 
+const bodyEl = document.getElementById("body");
 const mainEl = document.getElementById("main");
-const currentweather = document.getElementById("current-weather");
 const resultsEl = document.getElementById("results");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 
