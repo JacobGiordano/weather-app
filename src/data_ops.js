@@ -52,7 +52,8 @@ const data_ops = {
         wind_speed: data.current.wind_speed,
         timezone: data.timezone
       },
-      forecast: []
+      forecast: [],
+      alerts: []
     }
     fetchObj.state ? filteredData.current.state = fetchObj.state : null;
 
@@ -72,6 +73,19 @@ const data_ops = {
         clouds: day.clouds,
         wind_speed: day.wind_speed
       });
+
+      if (data.alerts) {
+        for (let alert of data.alerts) {
+          filteredData.alerts.push({
+            sender_name: alert.sender_name,
+            event: alert.event,
+            start: alert.start,
+            end: alert.end,
+            description: alert.description,
+            tags: alert.tags
+          });
+        }
+      }
     }
   
     // console.log(filteredData);

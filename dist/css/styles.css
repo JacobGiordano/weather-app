@@ -254,18 +254,22 @@ button:hover {
 .current-weather {
   display: none;
   position: relative;
-  background: rgba(255, 255, 255, .0125);
-  border: 1px solid rgba(255, 255, 255, .2);
-  border-radius: 1rem;
   color: var(--white);
-  max-width: 350px;
   min-height: 550px;
   margin: 0 auto;
-  padding: 1rem;
   opacity: 0;
   overflow: auto;
-  box-shadow: 6px 6px 10px 4px rgb(0 0 0 / 20%);
   transition: all ease-in-out 1s;
+}
+
+@media screen and (min-width: 400px) {
+  .current-weather {
+    background: rgba(255, 255, 255, .0125);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 1rem;
+    max-width: 350px;
+    padding: 1rem;
+  }
 }
 
 .day-gray {
