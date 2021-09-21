@@ -340,6 +340,29 @@ button:hover {
   margin-bottom: 1rem;
 }
 
+/* --- 7-Day Forecast --- */
+.daily-forecast-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.daily-forcast__row {
+  display: flex;
+}
+
+.daily-forcast__row > span, .daily-forcast__row > img {
+  margin-right: .5rem;
+  flex: 1 1 0;
+}
+
+.daily-forcast__row > span:last-of-type, .daily-forcast__row > img:last-of-type {
+  margin-right: 0;
+}
+
+.daily-forcast__row .daily-forecast__icon {
+  max-width: 48px;
+}
+
 /* --- Multiple Results --- */
 .results {
   display: none;

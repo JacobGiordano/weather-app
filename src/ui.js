@@ -106,6 +106,12 @@ const ui = {
   },
   updateTemps() {
     const tempElementIdArray = ["current-weather-temp", "current-weather-feels-like"];
+    const forecastEls = document.querySelectorAll(".daily-forcast__row");
+    for (let i = 0; i < forecastEls.length; i++) {
+      const highString = `forecast-row-${i + 1}-high`;
+      const lowString = `forecast-row-${i + 1}-low`;
+      tempElementIdArray.push(highString, lowString);
+    }
     currentWeather.convertTemps(tempElementIdArray);
     data_ops.setTempCheckbox();
   },

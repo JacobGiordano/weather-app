@@ -60,13 +60,13 @@ const data_ops = {
     for (let day of data.daily) {
       filteredData.forecast.push({
         day_temp: day.temp.day,
-        hi_temp: day.temp.max,
+        high_temp: day.temp.max,
         low_temp: day.temp.min,
         humidity: day.humidity,
         chance_of_precipitation: day.pop,
         // main: day.weather.main,
-        description: day.weather.description,
-        icon: day.weather.icon,
+        description: day.weather[0].description,
+        icon: day.weather[0].icon,
         // weather_id: day.weather.id,
         sunrise: day.sunrise,
         sunset: day.sunset,

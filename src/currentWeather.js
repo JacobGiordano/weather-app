@@ -1,3 +1,5 @@
+import dailyforecast from "./daily-forecast";
+
 const currentWeather = {
   async populateCurrentWeather(filteredData) {
     const data = filteredData.current;
@@ -55,6 +57,8 @@ const currentWeather = {
     if (!Object.prototype.hasOwnProperty.call(data, "state")) {
       document.getElementById("current-weather-state").textContent = "";
     }
+
+    dailyforecast.populateForecast(filteredData);
 
     !currentWeatherEl.classList.contains("fade-in") ? currentWeatherEl.classList.add("fade-in") : null;
     resultsEl.classList.contains("fade-in") ? resultsEl.classList.remove("fade-in") : null;
