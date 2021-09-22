@@ -168,7 +168,7 @@ button:hover {
   background: var(--light-gray);
   border-radius: 1rem;
   width: 54px;
-  height: 24px;
+  height: 22px;
   padding: 0;
   justify-content: space-between;
   align-items: center;
@@ -180,8 +180,8 @@ button:hover {
   border: 1px solid var(--blue-green);
   border-radius: 100%;
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   z-index: 1;
   left: 0;
   right: unset;
@@ -195,13 +195,13 @@ button:hover {
 }
 
 .temp-unit__checkbox:checked ~ .slider-options:before {
-  transform: translateX(124%);
+  transform: translateX(145%);
 }
 
 .temp-unit {
   display: inline-block;
   color: var(--dark-gray);
-  /* width: 1.25rem; */
+  font-size: .85rem;
   text-align: center;
   transition: all ease-in-out .1s;
   z-index: 2;
@@ -212,7 +212,7 @@ button:hover {
 }
 
 .temp-unit:first-of-type {
-  padding-left: 3px;
+  padding-left: 4px;
 }
 
 .temp-unit:last-of-type {
@@ -378,28 +378,16 @@ button:hover {
   justify-content: space-between;
 }
 
-.daily-forecast__row > span.daily-forecast__date {
+.daily-forecast__row > .daily-forecast__date {
   margin-right: 0;
-  max-width: 106px;
+  min-width: 100px;
+  max-width: 100px;
   flex: 2 2 0;
-}
-
-.daily-forecast__row > div.low-temp-wrapper {
-  margin-right: 0;
 }
 
 .daily-forecast__row .daily-forecast__icon {
   max-width: 48px;
   margin-right: .75rem;
-}
-
-@media screen and (min-width: 350px) {
-  .daily-forecast__date {
-    max-width: 116px;
-  }
-  .daily-forecast__row  .high-temp-wrapper {
-    margin-right: 0;
-  }
 }
 
 /* --- Multiple Results --- */
@@ -467,6 +455,20 @@ button:hover {
 }
 
 /* --- Media Queries --- */
+@media screen and (min-width: 350px) {
+  .daily-forecast__date {
+    max-width: 116px;
+  }
+  .daily-forecast__row {
+    justify-content: flex-start;
+  }
+  .daily-forecast__row > * {
+    margin-right: 1.5rem;
+  }
+  .daily-forecast__row > *:last-child {
+    margin-right: 0;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 1069px) {
   .main {
     margin-top: .5rem;
@@ -539,9 +541,6 @@ button:hover {
   .weather-bottom-wrapper {
     order: 3;
     margin-top: 0;
-  }
-  .daily-forecast__row .high-temp-wrapper {
-    margin-right: .5rem;
   }
 }
 

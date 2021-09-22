@@ -2,18 +2,13 @@ import secret from "./secret.js";
 
 const data_ops = {
   findCityInJson(cityName) {
-    // console.log(cityName);
     const foundCities = window.cityList.filter(obj => obj.name.toLowerCase().includes(cityName.toLowerCase().trim()));
-    // console.log(foundCities);
     return foundCities;
   },
   async fetchCityData(fetchObj) {
-    // console.log("FETCH OBJ:");
-    // console.log(fetchObj);
     const apiKey = secret.key;
     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${fetchObj.lat}&lon=${fetchObj.lon}&exclude=minutely,hourly&appid=${apiKey}`);
     const data = await response.json();
-    // console.log(data);
     return data;
   },
   async fetchSelectedCityData(e) {
@@ -26,13 +21,11 @@ const data_ops = {
       lon: coordinates[1].trim()
     }
     clickedEl.querySelector(".result-state") ? fetchObj.state = clickedEl.querySelector(".result-state").textContent : null;
-    // ui.clearElement(mainEl);
     const returnedData = await data_ops.fetchCityData(fetchObj);
     const filteredData = data_ops.filterData(returnedData, fetchObj);
     return filteredData;
   },
   filterData(data, fetchObj) {
-    // console.log(data);
     const filteredData = {
       current: {
         city: fetchObj.name,
@@ -88,7 +81,6 @@ const data_ops = {
       }
     }
   
-    // console.log(filteredData);
     return filteredData;
   },
   getTempCheckbox() {

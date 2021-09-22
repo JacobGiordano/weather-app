@@ -9,9 +9,7 @@ const currentWeather = {
     currentWeatherEl.classList.contains("fade-in") ? currentWeatherEl.classList.add("fade-out") : null;
     
     await new Promise(resolve => setTimeout(resolve, 250));
-    // currentWeatherEl.classList.remove("day");
-    // currentWeatherEl.classList.remove("night");
-    // currentWeatherEl.classList.remove("gray");
+
     bodyEl.classList.remove("day");
     bodyEl.classList.remove("night");
     bodyEl.classList.remove("gray");
@@ -20,7 +18,6 @@ const currentWeather = {
       const currentSelector = key.replace("_", "-");
       const selectorString = `current-weather-${currentSelector}`;
       const currentEl = document.getElementById(selectorString);
-      console.log(value);
       if (selectorString === "current-weather-icon") {
         const svgIcon = `../src/openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
@@ -82,10 +79,8 @@ const currentWeather = {
     for (let i = 0; i < arrayOfElements.length; i++) {
       const currentEl = document.getElementById(arrayOfElements[i]);
       if (currentEl && currentEl.textContent!== null) {
-        // console.log(currentEl.id);
         const splitContent = currentEl.textContent.split("°")[0];
         tempUnitCheckbox.checked ? currentEl.textContent = `${currentWeather.convertToFarFromCel(splitContent)}\xB0 F` : currentEl.textContent = `${currentWeather.convertToCelFromFar(splitContent)}\xB0 C`;
-        // console.log(splitContent);
       }
     }
   }
@@ -97,12 +92,3 @@ const resultsEl = document.getElementById("results");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 
 export default currentWeather;
-
-// City name, State name (if applicable)
-// Country name
-// Icon w/ Current temp overlaid
-// Description and/or Main info
-// Feels like temp / Humidity
-// Pressure / Wind speed
-// Clouds / Visibility
-// Sunrise / Sunset
