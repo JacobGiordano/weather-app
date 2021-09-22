@@ -12,26 +12,28 @@
 </head>
 <body id="body" class="body">
   <header id="header" class="header">
-    <div class="title-logo-wrapper">
-      <h1 id="page-title" class="page-title">Weather Station</h1>
-      <div id="page-logo" class="page-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 24 44" ><circle cx="32" cy="42" r="4" fill="#ef4444"/><path fill="none" stroke="#ef4444" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M32 28.5v13"><animateTransform attributeName="transform" dur="1s" repeatCount="indefinite" type="translate" values="0 0; 0 1; 0 0"/></path><path fill="none" stroke="#e5e7eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M39 41.9a7 7 0 11-14 0 7.12 7.12 0 013-5.83v-17a4 4 0 118 0v17a7.12 7.12 0 013 5.83zM32.5 25h3m-3-4h3m-3 8h3"/></svg>
-      </div>
-    </div>
-    <div id="search-form-and-toggle-wrapper" class="search-form-and-toggle-wrapper">
-      <form action="" id="search-form" class="search-form">
-        <label for="search-input" id="search-input-label" class="search-input-label">Enter a city name</label>
-        <div id="input-btn-wrapper" class="input-btn-wrapper">
-          <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
-          <button type="submit" id="search-btn" class="search-btn">Search</button>
+    <div class="header__inner-wrapper">
+      <div class="title-logo-wrapper">
+        <h1 id="page-title" class="page-title">Weather Station</h1>
+        <div id="page-logo" class="page-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 24 44" ><circle cx="32" cy="42" r="4" fill="#ef4444"/><path fill="none" stroke="#ef4444" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M32 28.5v13"><animateTransform attributeName="transform" dur="1s" repeatCount="indefinite" type="translate" values="0 0; 0 1; 0 0"/></path><path fill="none" stroke="#e5e7eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M39 41.9a7 7 0 11-14 0 7.12 7.12 0 013-5.83v-17a4 4 0 118 0v17a7.12 7.12 0 013 5.83zM32.5 25h3m-3-4h3m-3 8h3"/></svg>
         </div>
-      </form>
-      <div id="temp-unit-slider" class="temp-unit-slider">
-        <label for="temp-unit-checkbox" id="temp-unit-slider-label" class="temp-unit-slider__label" aria-la>Temperature unit</label>
-        <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit__checkbox hidden">
-        <div class="slider-options">
-          <div id="celcius" class="temp-unit selected">C&deg;</div>
-          <div id="farenheit" class="temp-unit">F&deg;</div>
+      </div>
+      <div id="search-form-and-toggle-wrapper" class="search-form-and-toggle-wrapper">
+        <form action="" id="search-form" class="search-form">
+          <label for="search-input" id="search-input-label" class="search-input-label">Enter a city name</label>
+          <div id="input-btn-wrapper" class="input-btn-wrapper">
+            <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
+            <button type="submit" id="search-btn" class="search-btn">Search</button>
+          </div>
+        </form>
+        <div id="temp-unit-slider" class="temp-unit-slider">
+          <label for="temp-unit-checkbox" id="temp-unit-slider-label" class="temp-unit-slider__label" aria-la>Temperature unit</label>
+          <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit__checkbox hidden">
+          <div class="slider-options">
+            <div id="celcius" class="temp-unit selected">C&deg;</div>
+            <div id="farenheit" class="temp-unit">F&deg;</div>
+          </div>
         </div>
       </div>
     </div>
@@ -195,8 +197,10 @@
     </div>
   </main>
   <footer id="footer" class="footer">
-    <span>Icons by <a href="https://basmilius.github.io/weather-icons/" target="_blank">Bas Milius</a></span>
-    <span>Powered by <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API</a></span>
+    <div class="footer__inner-wrapper">
+      <span>Icons by <a href="https://basmilius.github.io/weather-icons/" target="_blank">Bas Milius</a></span>
+      <span>Powered by <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API</a></span>
+    </div>
   </footer>
   <script type="text/javascript" src="main.js"></script>
 </body>
