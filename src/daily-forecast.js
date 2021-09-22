@@ -6,7 +6,7 @@ const dailyforecast = {
   populateForecast(filteredData) {
     const data = filteredData;
     const forecastData = data.forecast;
-    const forecastEls = document.querySelectorAll(".daily-forcast__row");
+    const forecastEls = document.querySelectorAll(".daily-forecast__row");
 
     for (let i = 0; i < forecastEls.length; i++) {
       let currentEL = forecastEls[i];
@@ -22,8 +22,6 @@ const dailyforecast = {
         currentEL.querySelector(".daily-forecast__high").textContent = `${currentWeather.convertToCelcius(forecastData[i].high_temp)}\xB0 C`;
         currentEL.querySelector(".daily-forecast__low").textContent = `${currentWeather.convertToCelcius(forecastData[i].low_temp)}\xB0 C`;
       }
-      currentEL.querySelector(".daily-forecast__description").textContent = forecastData[i].description;
-
     }
   }
 }

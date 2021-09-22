@@ -41,113 +41,154 @@
       <div id="results" class="results">
         <button id="results-close-btn" class="results__close-btn">&times;</button>
         <span id="results-msg" class="results__msg"></span>
-        <ul id="results-ul" class="results__ul"></ul>
+        <div id="results-list" class="results__list"></div>
       </div>
-      <div class="current-weather__row current-weather__city-state">
-        <div class="city-state-wrapper">
-          <div id="current-weather-city" class="current-weather__city"></div>
-          <div id="current-weather-state" class="current-weather__state"></div>
-        </div>
-        <div id="current-weather-country" class="current-weather__country"></div>
-      </div>
-      <div class="current-weather__row current-weather__temp-icon">
-        <div id="current-weather-temp" class="current-weather__current-temp"></div>
-        <img id="current-weather-icon" class="current-weather__icon"></img>
-      </div>
-      <div class="current-weather__row">
-        <!-- <div id="current-weather-main" class="current-weather__main"></div> -->
-        <div id="current-weather-description" class="current-weather__description"></div>
-      </div>
-      <div class="current-weather__row">
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Feels like</span>
-          <div id="current-weather-feels-like" class="current-weather__feels-like"></div>
-        </div>
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Humidity</span>
-          <div id="current-weather-humidity" class="current-weather__humidity"></div>
-        </div>
-      </div>
-      <div class="current-weather__row">
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Pressure</span>
-          <div id="current-weather-pressure" class="current-weather__pressure"></div>
-        </div>
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Wind speed</span>
-          <div id="current-weather-wind-speed" class="current-weather__wind-speed"></div>
-        </div>
-      </div>
-      <div class="current-weather__row">
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Clouds</span>
-          <div id="current-weather-clouds" class="current-weather__clouds"></div>
-        </div>
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Visibility</span>
-          <div id="current-weather-visibility" class="current-weather__visibility"></div>
-        </div>
-      </div>
-      <div class="current-weather__row">
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Sunrise</span>
-          <div id="current-weather-sunrise" class="current-weather__sunrise"></div>
-        </div>
-        <div class="current-weather__wrapper">
-          <span class="current-weather__title">Sunset</span>
-          <div id="current-weather-sunset" class="current-weather__sunset"></div>
-        </div>
-      </div>
-      <div class="current-weather__row">
-        <div id="daily-forcast-wrapper" class="daily-forecast-wrapper">
-          <div id="forecast-row-1" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-1-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-1-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+      <div class="weather-top-wrapper">
+        <div class="current-weather__row current-weather__city-state">
+          <div class="city-state-wrapper">
+            <div id="current-weather-city" class="current-weather__city"></div>
+            <div id="current-weather-state" class="current-weather__state"></div>
           </div>
-          <div id="forecast-row-2" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-2-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-2-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+          <div id="current-weather-country" class="current-weather__country"></div>
+        </div>
+        <div class="current-weather__row current-weather__temp-icon">
+          <div id="current-weather-temp" class="current-weather__current-temp"></div>
+          <img id="current-weather-icon" class="current-weather__icon"></img>
+        </div>
+        <div class="current-weather__row">
+          <!-- <div id="current-weather-main" class="current-weather__main"></div> -->
+          <div id="current-weather-description" class="current-weather__description"></div>
+        </div>
+      </div>
+      <div class="weather-middle-wrapper">
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Feels like</span>
+            <div id="current-weather-feels-like" class="current-weather__feels-like"></div>
           </div>
-          <div id="forecast-row-3" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-3-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-3-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Humidity</span>
+            <div id="current-weather-humidity" class="current-weather__humidity"></div>
           </div>
-          <div id="forecast-row-4" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-4-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-4-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Pressure</span>
+            <div id="current-weather-pressure" class="current-weather__pressure"></div>
           </div>
-          <div id="forecast-row-5" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-5-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-5-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Wind speed</span>
+            <div id="current-weather-wind-speed" class="current-weather__wind-speed"></div>
           </div>
-          <div id="forecast-row-6" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-6-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-6-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Clouds</span>
+            <div id="current-weather-clouds" class="current-weather__clouds"></div>
           </div>
-          <div id="forecast-row-7" class="daily-forcast__row">
-            <span class="daily-forecast__date"></span>
-            <img class="daily-forecast__icon"></img>
-            <span id="forecast-row-7-high" class="daily-forecast__high"></span>
-            <span id="forecast-row-7-low" class="daily-forecast__low"></span>
-            <span class="daily-forecast__description"></span>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Visibility</span>
+            <div id="current-weather-visibility" class="current-weather__visibility"></div>
+          </div>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Sunrise</span>
+            <div id="current-weather-sunrise" class="current-weather__sunrise"></div>
+          </div>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Sunset</span>
+            <div id="current-weather-sunset" class="current-weather__sunset"></div>
+          </div>
+        </div>
+      </div>
+      <div class="weather-bottom-wrapper">
+        <div class="current-weather__row">
+          <div id="daily-forecast-wrapper" class="daily-forecast-wrapper">
+            <div id="forecast-row-1" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-1-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-1-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-2" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-2-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-2-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-3" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-3-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-3-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-4" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-4-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-4-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-5" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-5-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-5-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-6" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-6-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-6-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-7" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-7-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-7-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
           </div>
         </div>
       </div>

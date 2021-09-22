@@ -9,9 +9,9 @@ const ui = {
     }
   },
   listFoundLocations(foundJson, searchTerms) {
-    const resultsUl = document.getElementById("results-ul");
+    const resultsList = document.getElementById("results-list");
     pageMsgs.textContent = "";
-    this.clearElement(resultsUl);
+    this.clearElement(resultsList);
     resultsEl.classList.remove("fade-in");
 
     if (foundJson.length === 0) {
@@ -24,31 +24,32 @@ const ui = {
         const currentObj = foundJson[i];
         const cityEl = makeNewEl({
           tag: "span",
-          classes: "li-city",
+          classes: "result-city",
           text: `${currentObj.name}`
         });
         const commaEl = makeNewEl({
           tag: "span",
+          classes: "result-comma",
           text: ", "
         });
         let stateEl = currentObj.state;
         if (stateEl) {
           stateEl = makeNewEl({
             tag: "span",
-            classes: "li-state",
+            classes: "result-state",
             text: currentObj.state
           });
         }
         const countryEl = makeNewEl({
           tag: "span",
-          classes: "li-country",
+          classes: "result-country",
           text: currentObj.country
         });
         const newLi = makeNewEl({
-          tag: "li",
-          classes: "results__li",
+          tag: "div",
+          classes: "results__result",
           attributes: {
-            id: `li-${i + 1}`,
+            id: `result-${i + 1}`,
             "data-coordinates": `${currentObj.coord.lat}, ${currentObj.coord.lon}`
           }
         });
@@ -59,7 +60,7 @@ const ui = {
         newLi.appendChild(countryEl);
         newLi.addEventListener("click", this.handleLocationClick, false);
         newLi.classList.add("fade-in");
-        resultsUl.appendChild(newLi);
+        resultsList.appendChild(newLi);
       }
     }
     resultsEl.classList.add("fade-in");
@@ -70,7 +71,7 @@ const ui = {
   async handleLocationClick(e) {
     const filteredData = await data_ops.fetchSelectedCityData(e);
     pageMsgs.textContent = "";
-    ui.clearElement(resultsUl);
+    ui.clearElement(resultsList);
     currentWeather.populateCurrentWeather(filteredData);
   },
   async handleSearch() {
@@ -106,7 +107,7 @@ const ui = {
   },
   updateTemps() {
     const tempElementIdArray = ["current-weather-temp", "current-weather-feels-like"];
-    const forecastEls = document.querySelectorAll(".daily-forcast__row");
+    const forecastEls = document.querySelectorAll(".daily-forecast__row");
     for (let i = 0; i < forecastEls.length; i++) {
       const highString = `forecast-row-${i + 1}-high`;
       const lowString = `forecast-row-${i + 1}-low`;
@@ -146,7 +147,7 @@ const searchInput = document.getElementById("search-input");
 const resultsEl = document.getElementById("results");
 const resultsCloseBtn = document.getElementById("results-close-btn");
 const pageMsgs = document.getElementById("results-msg");
-const resultsUl = document.getElementById("results-ul");
+const resultsList = document.getElementById("results-list");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
 const tempUnitSlider = document.getElementById("temp-unit-slider");
 const celcius = document.getElementById("celcius");

@@ -17,15 +17,15 @@ const data_ops = {
     return data;
   },
   async fetchSelectedCityData(e) {
-    const clickedEl = e.target.closest("li");
+    const clickedEl = e.target.closest("div");
     const coordinates = clickedEl.dataset.coordinates.split(",");
     const fetchObj = {
-      name: clickedEl.querySelector(".li-city").textContent,
-      country: clickedEl.querySelector(".li-country").textContent,
+      name: clickedEl.querySelector(".result-city").textContent,
+      country: clickedEl.querySelector(".result-country").textContent,
       lat: coordinates[0].trim(),
       lon: coordinates[1].trim()
     }
-    clickedEl.querySelector(".li-state") ? fetchObj.state = clickedEl.querySelector(".li-state").textContent : null;
+    clickedEl.querySelector(".result-state") ? fetchObj.state = clickedEl.querySelector(".result-state").textContent : null;
     // ui.clearElement(mainEl);
     const returnedData = await data_ops.fetchCityData(fetchObj);
     const filteredData = data_ops.filterData(returnedData, fetchObj);

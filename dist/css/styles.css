@@ -18,16 +18,20 @@
 }
 
 html, body {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .body {
   background: var(--med-light-gray);
   padding: 0 1rem;
-  /* max-width: 600px; */
-  min-height: 100%;
   margin: 0 auto 4rem;
   font-family: 'Nunito Sans', sans-serif;
+}
+
+@media screen and (min-width: 1040px) {
+  .body {
+    margin-bottom: 0;
+  }
 }
 
 footer {
@@ -214,6 +218,24 @@ button:hover {
   position: relative;
   margin-top: 6.5rem;
 }
+@media screen and (min-width: 350px) {
+  .main {
+    display: block;
+    position: relative;
+    margin-top: 4.75rem;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .main {
+    margin-top: 0;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 
 .main.loading:after {
   content: "";
@@ -257,18 +279,58 @@ button:hover {
   color: var(--white);
   min-height: 550px;
   margin: 0 auto;
+  flex-direction: column;
   opacity: 0;
   overflow: auto;
-  transition: all ease-in-out 1s;
+  transition: opacity ease-in-out 1s;
 }
 
-@media screen and (min-width: 400px) {
+.weather-bottom-wrapper {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 350px) {
   .current-weather {
     background: rgba(255, 255, 255, .0125);
     border: 1px solid rgba(255, 255, 255, .2);
     border-radius: 1rem;
     max-width: 350px;
     padding: 1rem;
+  }
+  .weather-bottom-wrapper {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .current-weather {
+    background: rgba(255, 255, 255, .0125);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 1rem;
+    max-width: 1040px;
+    min-height: 370px;
+    padding: 1rem;
+    flex-direction: row;
+    grid-gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .weather-top-wrapper, .weather-middle-wrapper, .weather-bottom-wrapper {
+    flex: 1 1 0;
+  }
+  .weather-top-wrapper {
+    border-left: 1px solid rgba(255, 255, 255, .2);
+    border-right: 1px solid rgba(255, 255, 255, .2);
+    order: 2;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .weather-middle-wrapper {
+    order: 1;
+  }
+  .weather-bottom-wrapper {
+    order: 3;
+    margin-top: 0;
   }
 }
 
@@ -346,21 +408,40 @@ button:hover {
   width: 100%;
 }
 
-.daily-forcast__row {
+.daily-forecast__row {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.daily-forcast__row > span, .daily-forcast__row > img {
-  margin-right: .5rem;
-  flex: 1 1 0;
+.daily-forecast__row > span.daily-forecast__date {
+  margin-right: 0;
+  max-width: 106px;
+  flex: 2 2 0;
 }
 
-.daily-forcast__row > span:last-of-type, .daily-forcast__row > img:last-of-type {
+.daily-forecast__row > div.low-temp-wrapper {
   margin-right: 0;
 }
 
-.daily-forcast__row .daily-forecast__icon {
+.daily-forecast__row .daily-forecast__icon {
   max-width: 48px;
+  margin-right: .75rem;
+}
+
+@media screen and (min-width: 350px) {
+  .daily-forecast__date {
+    max-width: 116px;
+  }
+  .daily-forecast__row  .high-temp-wrapper {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .daily-forecast__row .high-temp-wrapper {
+    margin-right: .5rem;
+  }
 }
 
 /* --- Multiple Results --- */
@@ -374,6 +455,7 @@ button:hover {
   width: 100%;
   height: 100%;
   padding: 1rem;
+  flex-direction: column;
   left: 50%;
   top: 0;
   overflow-y: scroll;
@@ -382,6 +464,17 @@ button:hover {
   transform: translateX(-50%);
   transition: all ease-in-out .1s;
   z-index: 20;
+}
+
+.results.fade-in .results__list {
+  display: grid;
+  grid-gap: .5rem 1rem;
+}
+
+@media screen and (min-width: 1040px) {
+  .results.fade-in .results__list {
+    grid-template-columns: repeat(auto-fit, 32%);
+  }
 }
 
 .results__close-btn {
@@ -405,22 +498,30 @@ button:hover {
   margin-bottom: .5rem;
 }
 
-.results__li {
+.results__result {
   display: inline-block;
   border-bottom: 1px solid transparent;
   cursor: pointer;
   transition: all ease-in-out .1s;
 }
 
-.results__li:hover {
+.results__result:hover {
   border-bottom-color: var(--dark-gray);
   transform: translateX(.5rem);
 }
 
+.results__result.fade-in {
+  display: inline-block;
+}
+
+/* .result-comma {
+  margin-right: .25em;
+} */
+
 /* --- Utility Classes --- */
 
 .fade-in {
-  display: block;
+  display: flex;
   -webkit-animation: .25s fade-in forwards;
           animation: .25s fade-in forwards;
 }
