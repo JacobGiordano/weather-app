@@ -450,7 +450,7 @@ button:hover {
   .main {
     display: block;
     position: relative;
-    margin-top: 7rem auto 5rem;
+    margin: 7rem auto 5rem;
   }
   .current-weather {
     background: rgba(255, 255, 255, .0125);
