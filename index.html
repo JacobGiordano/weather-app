@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>Weather Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/css/styles.css">
+</head>
+<body id="body" class="body">
+  <header id="header" class="header">
+    <div class="header__inner-wrapper">
+      <div class="title-logo-wrapper">
+        <h1 id="page-title" class="page-title">Weather Station</h1>
+        <div id="page-logo" class="page-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 24 44" ><circle cx="32" cy="42" r="4" fill="#ef4444"/><path fill="none" stroke="#ef4444" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M32 28.5v13"><animateTransform attributeName="transform" dur="1s" repeatCount="indefinite" type="translate" values="0 0; 0 1; 0 0"/></path><path fill="none" stroke="#e5e7eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M39 41.9a7 7 0 11-14 0 7.12 7.12 0 013-5.83v-17a4 4 0 118 0v17a7.12 7.12 0 013 5.83zM32.5 25h3m-3-4h3m-3 8h3"/></svg>
+        </div>
+      </div>
+      <div id="search-form-and-toggle-wrapper" class="search-form-and-toggle-wrapper">
+        <form action="" id="search-form" class="search-form">
+          <label for="search-input" id="search-input-label" class="search-input-label">Enter a city name</label>
+          <div id="input-btn-wrapper" class="input-btn-wrapper">
+            <input type="text" id="search-input" class="search-input" name="search-input" placeholder="">
+            <button type="submit" id="search-btn" class="search-btn">Search</button>
+          </div>
+        </form>
+        <div id="temp-unit-slider" class="temp-unit-slider">
+          <label for="temp-unit-checkbox" id="temp-unit-slider-label" class="temp-unit-slider__label" aria-la>Temperature unit</label>
+          <input type="checkbox" name="temp-unit-checkbox" id="temp-unit-checkbox" class="temp-unit__checkbox hidden">
+          <div class="slider-options">
+            <div id="celcius" class="temp-unit selected">C&deg;</div>
+            <div id="farenheit" class="temp-unit">F&deg;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="page-load-placeholder" class="page-load-placeholder">
+    <div id="placeholder-logo" class="page-load-placeholder__logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 24 44" ><circle cx="32" cy="42" r="4" fill="#ef4444"/><path fill="none" stroke="#ef4444" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M32 28.5v13"><animateTransform attributeName="transform" dur="1s" repeatCount="indefinite" type="translate" values="0 0; 0 1; 0 0"/></path><path fill="none" stroke="#e5e7eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M39 41.9a7 7 0 11-14 0 7.12 7.12 0 013-5.83v-17a4 4 0 118 0v17a7.12 7.12 0 013 5.83zM32.5 25h3m-3-4h3m-3 8h3"/></svg>
+    </div>
+    <span id="page-load-msg" class="page-load-msg">Search for a city above to get started</span>
+  </div>
+  <main id="main" class="main">
+    <div id="current-weather" class="current-weather">
+      <div id="results" class="results">
+        <button id="results-close-btn" class="results__close-btn">&times;</button>
+        <span id="results-msg" class="results__msg"></span>
+        <div id="results-list" class="results__list"></div>
+      </div>
+      <div class="weather-top-wrapper">
+        <div class="current-weather__row current-weather__city-state">
+          <div class="city-state-wrapper">
+            <div id="current-weather-city" class="current-weather__city"></div>
+            <div id="current-weather-state" class="current-weather__state"></div>
+          </div>
+          <div id="current-weather-country" class="current-weather__country"></div>
+        </div>
+        <div class="current-weather__row current-weather__temp-icon">
+          <div id="current-weather-temp" class="current-weather__current-temp"></div>
+          <img id="current-weather-icon" class="current-weather__icon"></img>
+        </div>
+        <div class="current-weather__row">
+          <!-- <div id="current-weather-main" class="current-weather__main"></div> -->
+          <div id="current-weather-description" class="current-weather__description"></div>
+        </div>
+      </div>
+      <div class="weather-middle-wrapper">
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Feels like</span>
+            <div id="current-weather-feels-like" class="current-weather__feels-like"></div>
+          </div>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Humidity</span>
+            <div id="current-weather-humidity" class="current-weather__humidity"></div>
+          </div>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Pressure</span>
+            <div id="current-weather-pressure" class="current-weather__pressure"></div>
+          </div>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Wind speed</span>
+            <div id="current-weather-wind-speed" class="current-weather__wind-speed"></div>
+          </div>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Clouds</span>
+            <div id="current-weather-clouds" class="current-weather__clouds"></div>
+          </div>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Visibility</span>
+            <div id="current-weather-visibility" class="current-weather__visibility"></div>
+          </div>
+        </div>
+        <div class="current-weather__row">
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Sunrise</span>
+            <div id="current-weather-sunrise" class="current-weather__sunrise"></div>
+          </div>
+          <div class="current-weather__wrapper">
+            <span class="current-weather__title">Sunset</span>
+            <div id="current-weather-sunset" class="current-weather__sunset"></div>
+          </div>
+        </div>
+      </div>
+      <div class="weather-bottom-wrapper">
+        <div class="current-weather__row">
+          <div id="daily-forecast-wrapper" class="daily-forecast-wrapper">
+            <div id="forecast-row-1" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-1-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-1-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-2" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-2-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-2-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-3" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-3-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-3-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-4" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-4-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-4-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-5" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-5-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-5-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-6" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-6-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-6-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+            <div id="forecast-row-7" class="daily-forecast__row">
+                <span class="daily-forecast__date"></span>
+                <img class="daily-forecast__icon"></img>
+                <div class="high-temp-wrapper">
+                  <span class="high-temp-label">H: </span>
+                  <span id="forecast-row-7-high" class="daily-forecast__high"></span>
+                </div>
+                <div class="low-temp-wrapper">
+                  <span class="low-temp-label">L: </span>
+                  <span id="forecast-row-7-low" class="daily-forecast__low"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer id="footer" class="footer">
+    <div class="footer__inner-wrapper">
+      <span>Icons by <a href="https://basmilius.github.io/weather-icons/" target="_blank">Bas Milius</a></span>
+      <span>Powered by <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API</a></span>
+    </div>
+  </footer>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
