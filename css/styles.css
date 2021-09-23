@@ -295,7 +295,7 @@ button:hover {
 }
 
 .night-gray {
-  background: url("/src/weather-icons/stars.svg"), linear-gradient(180deg, #363644 -10%, #5a6a7d 30%, #46566b 60%, #2a3240 80%);
+  background: url("./weather-icons/stars.svg"), linear-gradient(180deg, #363644 -10%, #5a6a7d 30%, #46566b 60%, #2a3240 80%);
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 }
 
@@ -305,7 +305,7 @@ button:hover {
 }
 
 .night {
-  background: url("/src/weather-icons/stars.svg"), linear-gradient(180deg, #010125 -10%, #0d3352 23%, #053258 45%, #011b3a 65%, #041431 75%, #02091d 85%);
+  background: url("./weather-icons/stars.svg"), linear-gradient(180deg, #010125 -10%, #0d3352 23%, #053258 45%, #011b3a 65%, #041431 75%, #02091d 85%);
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
 }
 
