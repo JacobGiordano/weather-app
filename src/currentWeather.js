@@ -20,7 +20,7 @@ const currentWeather = {
       const selectorString = `current-weather-${currentSelector}`;
       const currentEl = document.getElementById(selectorString);
       if (selectorString === "current-weather-icon") {
-        const svgIcon = `../src/openweathermap/${value}.svg`;
+        const svgIcon = `./openweathermap/${value}.svg`;
         currentEl.src = svgIcon;
         if (value === "09d" || value === "10d" || value === "11d" || value === "13d" || value === "50d") {
           bodyEl.classList.add("day-gray");

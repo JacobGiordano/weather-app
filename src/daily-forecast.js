@@ -11,7 +11,7 @@ const dailyforecast = {
     for (let i = 0; i < forecastEls.length; i++) {
       let currentEL = forecastEls[i];
       const forecastDate = new Date();
-      const svgIcon = `../src/openweathermap/${forecastData[i].icon}.svg`;
+      const svgIcon = `./openweathermap/${forecastData[i].icon}.svg`;
       
       currentEL.querySelector(".daily-forecast__date").textContent = format(addDays(forecastDate, i + 1), "eee, MMM d");
       currentEL.querySelector(".daily-forecast__icon").src = svgIcon;

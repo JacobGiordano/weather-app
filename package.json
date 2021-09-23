@@ -1,7 +1,10 @@
 {
   "scripts": {
     "start": "node ./src/index.js",
-    "lint": "eslint ./src --ext .js"
+    "lint": "eslint ./src --ext .js",
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -11,6 +14,7 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-loader": "^4.0.2",
+    "gh-pages": "^3.2.3",
     "prettier": "^2.3.2",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
