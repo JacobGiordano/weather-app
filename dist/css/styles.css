@@ -51,12 +51,6 @@ footer {
   text-shadow: none;
 }
 
-@media screen and (min-width: 400px) {
-  .footer__inner-wrapper {
-    flex-direction: row;
-  }
-}
-
 ul {
   list-style: none;
 }
@@ -219,18 +213,28 @@ button:hover {
   padding-right: 4px;
 }
 
+/* --- Page Placeholder --- */
+.page-load-placeholder {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.page-load-placeholder__logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
+}
+
 /* --- Main --- */
 .main {
   display: block;
   position: relative;
   margin-top: 6.5rem;
-}
-@media screen and (min-width: 350px) {
-  .main {
-    display: block;
-    position: relative;
-    margin-top: 4.75rem;
-  }
 }
 
 .main.loading:after {
@@ -283,19 +287,6 @@ button:hover {
 
 .weather-bottom-wrapper {
   margin-top: 1rem;
-}
-
-@media screen and (min-width: 350px) {
-  .current-weather {
-    background: rgba(255, 255, 255, .0125);
-    border: 1px solid rgba(255, 255, 255, .2);
-    border-radius: 1rem;
-    max-width: 350px;
-    padding: 1rem;
-  }
-  .weather-bottom-wrapper {
-    margin-top: 1rem;
-  }
 }
 
 .day-gray {
@@ -456,6 +447,21 @@ button:hover {
 
 /* --- Media Queries --- */
 @media screen and (min-width: 350px) {
+  .main {
+    display: block;
+    position: relative;
+    margin-top: 4.75rem;
+  }
+  .current-weather {
+    background: rgba(255, 255, 255, .0125);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 1rem;
+    max-width: 350px;
+    padding: 1rem;
+  }
+  .weather-bottom-wrapper {
+    margin-top: 1rem;
+  }
   .daily-forecast__date {
     max-width: 116px;
   }
@@ -467,6 +473,11 @@ button:hover {
   }
   .daily-forecast__row > *:last-child {
     margin-right: 0;
+  }
+}
+@media screen and (min-width: 400px) {
+  .footer__inner-wrapper {
+    flex-direction: row;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1069px) {
@@ -496,22 +507,23 @@ button:hover {
 }
 @media screen and (min-width: 768px) {
   .body {
-    margin-bottom: 0;
+    margin-bottom: 2.5rem;
   }
   .main {
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin: 5rem auto 0;
   }
   .results.fade-in .results__list {
     grid-template-columns: repeat(auto-fit, 32%);
   }
 }
 @media screen and (min-width: 1070px) {
+  .body {
+    margin-bottom: 0;
+    min-height: unset;
+  }
   .main {
-    margin-top: 0;
+    width: 100%;
+    margin-top: 8rem;
   }
   .current-weather {
     background: rgba(255, 255, 255, .0125);

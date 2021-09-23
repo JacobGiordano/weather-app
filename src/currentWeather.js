@@ -5,6 +5,7 @@ const currentWeather = {
     const data = filteredData.current;
     const currentWeatherEl = document.getElementById("current-weather");
 
+    placeholderEl.classList.add("fade-out");
     mainEl.classList.add("loading");
     currentWeatherEl.classList.contains("fade-in") ? currentWeatherEl.classList.add("fade-out") : null;
     
@@ -87,6 +88,7 @@ const currentWeather = {
 }
 
 const bodyEl = document.getElementById("body");
+const placeholderEl = document.getElementById("page-load-placeholder");
 const mainEl = document.getElementById("main");
 const resultsEl = document.getElementById("results");
 const tempUnitCheckbox = document.getElementById("temp-unit-checkbox");
